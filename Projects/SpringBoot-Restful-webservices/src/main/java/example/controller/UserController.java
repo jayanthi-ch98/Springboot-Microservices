@@ -1,8 +1,10 @@
 package example.controller;
 
 
+import example.Dto.UserDto;
 import example.entity.User;
 import example.service.UserServiceImpl;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,29 +23,37 @@ public class UserController {
      private UserServiceImpl userService;
 
     //Creating a Restful API to save user information to database
+//    @PostMapping
+//    public ResponseEntity<User> createUser(@RequestBody User user){
+//        User savedUser= userService.createUser(user);
+//        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+//    }
+
+    //Refactoring Post method(creating UserDto class instead of user for Post class)
+    //@Valid --> is used to add validations for Request
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user){
-        User savedUser= userService.createUser(user);
+    public ResponseEntity<UserDto> createUser(@RequestBody @Valid UserDto user) {
+        UserDto savedUser = userService.createUser(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Long userId){
-        User getUserInformation= userService.getUser(userId);
+    public ResponseEntity<UserDto> getUserById(@PathVariable("id") Long userId){
+        UserDto getUserInformation= userService.getUser(userId);
         return new ResponseEntity<>(getUserInformation, HttpStatus.OK);
     }
 
-    @PostMapping("{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") Long id,@RequestBody User user){
+    @PutMapping("{id}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable("id") Long id,@RequestBody @Valid User user){
         user.setId(id);
-        User userupdated = userService.updateUser(user);
+        UserDto userupdated = userService.updateUser(user);
         return new ResponseEntity<>(userupdated,HttpStatus.OK);
     }
 
 
-    @GetMapping("/all")
-    public ResponseEntity<List<User>> getAllUsers(){
-        List<User> allUsers= userService.getAllUsers();
+    @GetMapping()
+    public ResponseEntity<List<UserDto>> getAllUsers(){
+        List<UserDto> allUsers= userService.getAllUsers();
         return new ResponseEntity<>(allUsers, HttpStatus.OK);
     }
 
