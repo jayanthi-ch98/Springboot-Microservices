@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
         //using MapStruct for mapping
         Optional<User> userExists = userRepository.findByEmail(userdto.getEmail());
-        System.out.println("printing line:"+userExists.get());
+//        System.out.println("printing line:"+userExists.get());
         if(userExists.isPresent()){
             throw new EmailAlreadyExistsException("Email Id Already Exixts");
         }
