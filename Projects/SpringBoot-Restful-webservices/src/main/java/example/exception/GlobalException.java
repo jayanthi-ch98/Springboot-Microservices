@@ -51,6 +51,7 @@ public ResponseEntity<ErrorDetails> handleEmailAlreadyExistsException(EmailAlrea
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         Map<String,String> errorDetails=new HashMap<>();
+        System.out.println("Entered the handleMethod Argument Not valid");
         List<ObjectError> errorList= ex.getBindingResult().getAllErrors();
         errorList.forEach(error->
         {
