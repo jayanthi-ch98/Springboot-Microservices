@@ -1,0 +1,14 @@
+example\Mapper\UserMapper.class
+example\entity\User.class
+example\exception\EmailAlreadyExistsException.class
+example\service\UserServiceImpl.class
+example\exception\ErrorDetails.class
+example\Mapper\AutoUserMapperImpl.class
+example\repository\UserRepository.class
+example\Mapper\AutoUserMapper.class
+example\service\UserService.class
+example\exception\GlobalException.class
+example\exception\ResourceNotFoundException.class
+example\Dto\UserDto.class
+example\controller\UserController.class
+example\SpringBootRestfulWebservicesApplication.class
